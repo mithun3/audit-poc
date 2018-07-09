@@ -17,8 +17,8 @@ import org.springframework.context.annotation.ImportResource;
 @ComponentScan
 @EnableAutoConfiguration
 @ImportResource("classpath:camel-route-spring.xml")
-public class RouterPocApplication {
+public class AuditPocApplication {
 	public static void main(String[] args) {
-		SpringApplication.run(RouterPocApplication.class, args);
+		SpringApplication.run(AuditPocApplication.class, args);
 	}
 }
