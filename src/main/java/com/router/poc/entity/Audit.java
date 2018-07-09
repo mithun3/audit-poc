@@ -22,10 +22,14 @@ import lombok.Setter;
 @Setter
 public class Audit {
 	
+	public Audit(String rqId) {
+		this.reqId = rqId;
+	}
+	
 	@Id
-	@Column(name="SEQ_ID")
-	@GeneratedValue(generator="SEQ_AUDIT_LOG", strategy= GenerationType.SEQUENCE)
-	@SequenceGenerator(name="SEQ_AUDIT_LOG", sequenceName="audit_log_seq")
+//	@Column(name="SEQ_ID")
+	@GeneratedValue(/*generator="SEQ_AUDIT_LOG", */strategy= GenerationType.AUTO)
+//	@SequenceGenerator(name="SEQ_AUDIT_LOG", sequenceName="audit_log_seq")
 	private Long seqId;
 	
 	@NotNull

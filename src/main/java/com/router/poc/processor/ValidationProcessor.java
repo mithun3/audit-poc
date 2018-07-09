@@ -13,15 +13,17 @@ import javax.xml.validation.SchemaFactory;
 
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
-import org.apache.commons.collections.map.HashedMap;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Component;
 import org.xml.sax.SAXException;
 
+import com.router.poc.entity.Audit;
 import com.router.poc.exception.RouterException;
+import com.router.poc.repo.AuditRepo;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -32,8 +34,8 @@ public class ValidationProcessor implements Processor {
 	private Map<String, Schema> schemaMap = new HashMap<>();
 	
 	@Autowired
-	private ResourceLoader resourceLoader;
-
+	private AuditRepo auditRepo;
+	
 	@Override
 	public void process(Exchange exchange) throws RouterException, SAXException, IOException {
 		
@@ -52,7 +54,7 @@ public class ValidationProcessor implements Processor {
 			throw e;
 		}
 		try {
-			validateSchema(incomingMessage, exchange, "test.xsd");
+			validateSchema(incomingMessage, exchange, "/resources/sample/test.xml");
 		} catch (Exception e) {
 			log.error("Exception has occured, during validateSchema(), {}", e.getMessage());
 			throw new RouterException("Exception has occured, during validateSchema()");
@@ -64,6 +66,7 @@ public class ValidationProcessor implements Processor {
 			Schema schema = getSchema(schemaName);
 			Source source = new StreamSource(new StringReader(message));
 			schema.newValidator().validate(source);
+			auditRepo.save(new Audit("testing"+message.length()));
 		} catch (RouterException e) {
 			log.error("An exception has occured during validation of xml with xsd schema, {}", e.getMessage());
 		}
@@ -73,7 +76,7 @@ public class ValidationProcessor implements Processor {
 		
 		if(schemaMap.containsKey(schemaName)) return schemaMap.get(schemaName);
 		
-		final Resource resource = resourceLoader.getResource(schemaName);
+		final Resource resource = new ClassPathResource("sample/test.xsd");//resourceLoader.getResource(schemaName);
 		
 		if(resource != null) {
 			log.info("validating the xml against the xsd");
