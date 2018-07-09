@@ -1,6 +1,7 @@
 package com.router.poc.processor;
 
 import java.io.StringReader;
+import java.util.Date;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -12,8 +13,10 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.router.poc.entity.Audit;
 import com.router.poc.exception.RouterException;
 import com.router.poc.model.Payment;
+import com.router.poc.model.Payment.Request;
 import com.router.poc.repo.AuditRepo;
 
 import lombok.extern.slf4j.Slf4j;
@@ -61,6 +64,18 @@ public class AuditPersistProcessor implements Processor {
 		StringReader reader = new StringReader(incomingMessage);
 		Payment payment = (Payment) unmarshaller.unmarshal(reader);
 		
+		for(Payment.Request request : payment.getRequest()) {
+			Audit audit = mapAudit(request);
+			auditRepo.save(audit);
+		}
+	}
+
+	private Audit mapAudit(Request request) {
+		Audit audit = new Audit (null, request.getRequestId(), request.getOriginId(), request.getSomeId(), request.getCode(),
+				new Date(), request.getCode(), request.getFrom().getFirstName(), request.getFrom().getLastName(), 
+				request.getFrom().getAcnum(), request.getFrom().getBranch(), request.getFrom().getType(), request.getTo().getFirstName(), 
+				request.getTo().getLastName(), request.getTo().getAcnum(), request.getTo().getBranch(), request.getTo().getType(), request.getAmount());
+		return audit;
 	}
 
 }
