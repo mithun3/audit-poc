@@ -71,10 +71,25 @@ public class AuditPersistProcessor implements Processor {
 	}
 
 	private Audit mapAudit(Request request) {
-		Audit audit = new Audit (null, request.getRequestId(), request.getOriginId(), request.getSomeId(), request.getCode(),
-				new Date(), request.getCode(), request.getFrom().getFirstName(), request.getFrom().getLastName(), 
-				request.getFrom().getAcnum(), request.getFrom().getBranch(), request.getFrom().getType(), request.getTo().getFirstName(), 
-				request.getTo().getLastName(), request.getTo().getAcnum(), request.getTo().getBranch(), request.getTo().getType(), request.getAmount());
+		Audit audit = Audit.builder()
+						.seqId(null)
+						.reqId(request.getRequestId())
+						.originId(request.getOriginId())
+						.someId(request.getSomeId())
+						.requestCode(request.getCode())
+						.transactionDate(new Date())
+						.fromAcnum(request.getFrom().getAcnum())
+						.fromBranch(request.getFrom().getBranch())
+						.fromFirstName(request.getFrom().getFirstName())
+						.fromLastName(request.getFrom().getLastName())
+						.fromType(request.getFrom().getType())
+						.toAcnum(request.getTo().getAcnum())
+						.toBranch(request.getTo().getBranch())
+						.toFirstName(request.getTo().getFirstName())
+						.toLastName(request.getTo().getLastName())
+						.toType(request.getTo().getType())
+						.amount(request.getAmount())
+						.build();
 		return audit;
 	}
 
