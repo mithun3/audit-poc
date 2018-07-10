@@ -46,7 +46,7 @@ public class CustomAuditRoutesBuilder extends RouteBuilder implements RoutesBuil
 					.end()
 					.to("activemq:payment.request.acknowledge.failed");
 				
-				from("activemq:payment.request.acknowledge")
+				from("activemq:payment.request.acknowledge").threads(10)
 					.log("Obtained the message from payment.request.acknowledge queue")
 					.setProperty("ROUTE_PATH", constant("REQUEST"))
 					.process(metricsInitProcessor)
