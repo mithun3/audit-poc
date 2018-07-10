@@ -1,5 +1,5 @@
 
-package com.router.poc.model;
+package com.audit.poc.model;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;

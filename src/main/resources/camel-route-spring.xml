@@ -5,11 +5,6 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
         http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
     
-	 <!-- ActiveMQ without Connection Pool    
-	 <bean id="activemq" class="org.apache.activemq.camel.component.ActiveMQComponent">
-	    <property name="brokerURL" value="tcp://localhost:61616"/>
-	 </bean>--> 
-    
     <!-- AciveMQ with Connection Pool -->
     <bean id="jmsConnectionFactory" class="org.apache.activemq.ActiveMQXAConnectionFactory">
        <property name="brokerURL" value="failover:(tcp://${activemq.hostname:127.0.0.1}:61616)" />
@@ -38,17 +33,5 @@
 		<property name="username" value="root" />
 		<property name="password" value="" />
 	</bean>
-    
-    
-    <!-- Redis Configuration 
-    <bean id="redisConnectionFactory" 
-        class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">
-       <property name="hostName" value="localhost"/>
-       <property name="port" value="6379"/>        
-    </bean>
-    
-    <bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate">
-        <property name="connectionFactory" ref="redisConnectionFactory"/>
-    </bean> -->
-     	                           
+
 </beans>

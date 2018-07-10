@@ -1,4 +1,4 @@
-package com.router.poc.entity;
+package com.audit.poc.entity;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -10,7 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import javax.xml.datatype.XMLGregorianCalendar;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -25,37 +24,8 @@ import lombok.Setter;
 @Setter
 public class Audit {
 
-
-
-//	public Audit(Long seqId, String reqId, String originId, String someId, String requestType, Date transactionDate,
-//			String requestCode, String fromFirstName, String fromLastName, String fromAcnum, String fromBranch,
-//			String fromType, String toFirstName, String toLastName, String toAcnum, String toBranch, String toType,
-//			BigDecimal bigDecimal) {
-//		super();
-//		this.seqId = seqId;
-//		this.reqId = reqId;
-//		this.originId = originId;
-//		this.someId = someId;
-//		this.requestType = requestType;
-//		this.transactionDate = transactionDate;
-//		this.requestCode = requestCode;
-//		this.fromFirstName = fromFirstName;
-//		this.fromLastName = fromLastName;
-//		this.fromAcnum = fromAcnum;
-//		this.fromBranch = fromBranch;
-//		this.fromType = fromType;
-//		this.toFirstName = toFirstName;
-//		this.toLastName = toLastName;
-//		this.toAcnum = toAcnum;
-//		this.toBranch = toBranch;
-//		this.toType = toType;
-//		this.amount = bigDecimal;
-//	}
-
 	@Id
-	// @Column(name="SEQ_ID")
-	@GeneratedValue(/* generator="SEQ_AUDIT_LOG", */strategy = GenerationType.AUTO)
-	// @SequenceGenerator(name="SEQ_AUDIT_LOG", sequenceName="audit_log_seq")
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long seqId;
 
 	@NotNull

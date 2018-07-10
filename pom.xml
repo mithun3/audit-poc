@@ -10,8 +10,8 @@
 		<version>1.5.6.RELEASE</version>
 	</parent>
 
-	<groupId>com.router.poc</groupId>
-	<artifactId>router-poc</artifactId>
+	<groupId>com.audit.poc</groupId>
+	<artifactId>audit-poc</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<name>router-poc</name>

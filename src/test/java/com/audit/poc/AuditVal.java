@@ -1,4 +1,4 @@
-package com.router.poc;
+package com.audit.poc;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -10,7 +10,7 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 
-import com.router.poc.model.Payment;
+import com.audit.poc.model.Payment;
 
 public class AuditVal {
 	

@@ -1,4 +1,4 @@
-package com.router.poc.routes;
+package com.audit.poc.routes;
 
 import org.apache.camel.RoutesBuilder;
 import org.apache.camel.builder.RouteBuilder;
@@ -6,10 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
-import com.router.poc.exception.RouterException;
-import com.router.poc.processor.AuditPersistProcessor;
-import com.router.poc.processor.MetricsCompleteProcessor;
-import com.router.poc.processor.MetricsInitProcessor;
+import com.audit.poc.exception.RouterException;
+import com.audit.poc.processor.AuditPersistProcessor;
+import com.audit.poc.processor.MetricsCompleteProcessor;
+import com.audit.poc.processor.MetricsInitProcessor;
 
 import lombok.extern.slf4j.Slf4j;
 

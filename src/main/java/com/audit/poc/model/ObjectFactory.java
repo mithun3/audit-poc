@@ -1,5 +1,5 @@
 
-package com.router.poc.model;
+package com.audit.poc.model;
 
 import javax.xml.bind.annotation.XmlRegistry;
 
