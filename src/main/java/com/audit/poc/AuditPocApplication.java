@@ -17,7 +17,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @Configuration
 @ComponentScan
 @EnableAutoConfiguration
-@EnableJpaRepositories("com.router.poc.repo")
+@EnableJpaRepositories("com.audit.poc.repo")
 @ImportResource("classpath:camel-route-spring.xml")
 public class AuditPocApplication {
 	@Autowired
